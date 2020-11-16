@@ -1,12 +1,11 @@
 var firebaseConfig = {
-  apiKey: "AIzaSyDjdVP2wSWz91dPgET3KIf4XbdxPB_2l1w",
-  authDomain: "javascriptdemo-237db.firebaseapp.com",
-  databaseURL: "https://javascriptdemo-237db.firebaseio.com",
-  projectId: "javascriptdemo-237db",
-  storageBucket: "javascriptdemo-237db.appspot.com",
-  messagingSenderId: "397768045903",
-  appId: "1:397768045903:web:64fc692aef3653b407013a",
-  measurementId: "G-9W77ZD235X"
+  apiKey: "AIzaSyCt4jTEOu17ddLU2KK_jJ9O7MeimnTpXJQ",
+  authDomain: "grocerylist-6ef54.firebaseapp.com",
+  databaseURL: "https://grocerylist-6ef54.firebaseio.com",
+  projectId: "grocerylist-6ef54",
+  storageBucket: "grocerylist-6ef54.appspot.com",
+  messagingSenderId: "481774771372",
+  appId: "1:481774771372:web:f13921b76d78d5fe091309"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -34,6 +33,10 @@ $("input[type='button']").click(function(e) {
     .collection("hotelreservation")
     .add(inputJson);
 */
+firebase
+.firestore()
+.collection("hotel")
+.add(inputJson)
 
   /* clear the entry */
   $("form")[0].reset();
