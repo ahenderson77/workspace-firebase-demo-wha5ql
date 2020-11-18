@@ -8,31 +8,40 @@ var firebaseConfig = {
   storageBucket: "grocerylist-6ef54.appspot.com",
   messagingSenderId: "481774771372",
   appId: "1:481774771372:web:f13921b76d78d5fe091309"
-  };
+};
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
 // save the data
-$(".sampleSurvey input[type='submit']").click(function(e){
-e.preventDefault();
-console.log("thing");
+$(".sampleSurvey input[type='submit']").click(function(e) {
+  e.preventDefault();
+  //console.log("thing");
 
-var inData = $("form").serializeArray();
-var inJson = {};  
-for (var i = 0; i < inData.length; i++) {
-  var name = inData[i]["name"];
-  var value = inData[i]["value"];
-  console.log(name + " " + value);
-  inJson[name] = value;
+  var inData = $("form").serializeArray();
+  var inJson = {};
+  for (var i = 0; i < inData.length; i++) {
+    var name = inData[i]["name"];
+    var value = inData[i]["value"];
+    console.log(name + " " + value);
+    inJson[name] = value;
   }
 
-console.log(inJson);
+  console.log(inJson);
 
+  firebase
+    .firestore()
+    .collection("hotel")
+    .add(inJson);
+
+  $("form")[0].reset();
+});
+// update the result in table
 firebase
   .firestore()
   .collection("hotel")
-  .add(inJson)
-  
-  $('form')[0].reset();
-});
-// update the result in table
+  .onSnapshot(function(snapShot) {
+    //console.log(snapShot);
+    console.log(snapShot.size);
+    snapShot.forEach(doc => console.log(doc.data()));
+    var ans = doc.data().choice;
+  });
