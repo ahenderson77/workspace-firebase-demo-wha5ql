@@ -43,5 +43,12 @@ firebase
     //console.log(snapShot);
     console.log(snapShot.size);
     snapShot.forEach(doc => console.log(doc.data()));
-    var ans = doc.data().choice;
+    //var ans = doc.data().choice;
+
+    //switch(results){
+      //case 0:
+      //ans = A:
+        //parse(INT)$('ans1').value++;
+        //break;
+    //}
   });
