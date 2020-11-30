@@ -40,15 +40,35 @@ firebase
   .firestore()
   .collection("hotel")
   .onSnapshot(function(snapShot) {
+    
     //console.log(snapShot);
     console.log(snapShot.size);
-    snapShot.forEach(doc => console.log(doc.data()));
-    //var ans = doc.data().choice;
-
-    //switch(results){
-      //case 0:
-      //ans = A:
-        //parse(INT)$('ans1').value++;
-        //break;
-    //}
+    snapShot.forEach(doc =>{
+      console.log(doc.data().choice)
+      var thing = doc.data().choice;
+      switch (thing)
+      {
+        case "A":
+          var num = parseInt($('#ans1').text())+1;
+          $('#ans1').text(num)
+          break;
+        case "B":
+          var num = parseInt($('#ans2').text())+1;
+          $('#ans2').text(num);
+          break;
+        case "C":
+          var num = parseInt($('#ans3').text())+1;
+          $('#ans3').text(num);
+          break;
+        case "D":
+          var num = parseInt($('#ans4').text())+1;
+          $('#ans4').text(num)
+          break;
+        case "E":
+          var num = parseInt($('#ans5').text())+1;
+          $('#ans5').text(num);
+          break;
+      }
+    });
   });
+

@@ -12,21 +12,28 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-$('#signup-form').submit(function(e){
+$("#signup-form").submit(function(e) {
   e.preventDefault();
   console.log("click the submit");
 
-  // use the provided sign in 
-  var email = $('username');
-  var psw = $('password');
+  // use the provided sign in
+  var name = $('input[name="fullname"]').val();
+  var email = $('input[name = "username"]').val();
+  var psw = $('input[name = "password"]').val();
+  var pswCheck = $('input[name = "cpassword"]').val();
 
-  firebase.auth().createUserWithEmailAndPassword(email,psw).then(user =>{
-       console.log("success");
-  }).catch(error=>{
-       console.log(error.code); 
-       console.log(error.message);
-  });
-
-
-
+  if (pswCheck != psw) {
+    console.log("Passwords do not match");
+  } else {
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, psw)
+      .then(user => {
+        console.log("success");
+      })
+      .catch(error => {
+        console.log(error.code);
+        console.log(error.message);
+      });
+  }
 });
